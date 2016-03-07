@@ -9,7 +9,7 @@
 import UIKit
 
 class KWTableViewCell: UITableViewCell,KWListProtocal {
-    func update(item: KWListDatasourceItem) {
+    func update(item: NSObject) {
         
     }
 }
@@ -17,11 +17,12 @@ class KWTableViewCell: UITableViewCell,KWListProtocal {
 class KWTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     private var cellIdentifier = "kwCell"
     private var tableViewCellClass:AnyClass!
-    private var datasource:[KWListDatasourceItem]!
-    var clickBlock:(item:KWListDatasourceItem,indexPath:NSIndexPath)->Void = {_ in}
-    convenience init(tableViewCellClass:AnyClass,datasource:[KWListDatasourceItem]) {
+    private var datasource:[NSObject]!
+    var designedCellHeight:CGFloat!
+    var clickBlock:(item:NSObject,indexPath:NSIndexPath)->Void = {_ in}
+    convenience init(tableViewCellClass:AnyClass,datasource:[NSObject],designedCellHeight:CGFloat) {
         self.init(frame:CGRectZero)
-        
+        self.designedCellHeight = designedCellHeight
         self.datasource = datasource
         self.tableViewCellClass = tableViewCellClass
         self.setup()
@@ -34,13 +35,17 @@ class KWTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     }
     
     // MAKR: -Public
-    func update(item: KWListDatasourceItem,index:Int) {
+    func update(item: NSObject,index:Int) {
         // TODO: 需要加入对多section的支持
         let cell = self.cellForRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0)) as! KWTableViewCell
         cell.update(item)
     }
     
     // UITableView Delegate
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return self.designedCellHeight
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.datasource.count
     }

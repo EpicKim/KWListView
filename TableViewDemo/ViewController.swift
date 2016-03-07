@@ -23,13 +23,13 @@ class MyTableViewCell:KWTableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
  
-    override func update(item: KWListDatasourceItem) {
+    override func update(item: NSObject) {
         let myItem = item as! MyItem
         self.myLabel.text = myItem.name
     }
 }
 
-class MyItem : KWListDatasourceItem {
+class MyItem : NSObject {
     var name:String!
     convenience init(name:String) {
         self.init()
@@ -52,7 +52,7 @@ class ViewController: UIViewController {
                         MyItem(name: "fifth"),
                         MyItem(name: "sixth"),
                          MyItem(name: "senventh")]
-        tableView = KWTableView(tableViewCellClass: MyTableViewCell.self, datasource: datasource)
+        tableView = KWTableView(tableViewCellClass: MyTableViewCell.self, datasource: datasource,designedCellHeight: 60)
         tableView.clickBlock = {(item,indexPath) -> Void in
             let myItem = item as! MyItem
             print(myItem.name)

@@ -8,5 +8,5 @@
 import Foundation
 
 protocol KWListProtocal {
-    func update(item: KWListDatasourceItem)
+    func update(item: NSObject)
 }
