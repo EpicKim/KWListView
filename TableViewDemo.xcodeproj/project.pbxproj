@@ -12,8 +12,9 @@
 		426CC8E91C8C12E700485254 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 426CC8E71C8C12E700485254 /* Main.storyboard */; };
 		426CC8EB1C8C12E700485254 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 426CC8EA1C8C12E700485254 /* Assets.xcassets */; };
 		426CC8EE1C8C12E700485254 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 426CC8EC1C8C12E700485254 /* LaunchScreen.storyboard */; };
-		426CC8F71C8C132A00485254 /* KWTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426CC8F61C8C132A00485254 /* KWTableView.swift */; };
-		426CC8FB1C8C194800485254 /* KWListProtocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426CC8FA1C8C194800485254 /* KWListProtocal.swift */; };
+		810FB9F31C9BEF90007110FA /* KWCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810FB9EF1C9BEF90007110FA /* KWCollectionView.swift */; };
+		810FB9F41C9BEF90007110FA /* KWListProtocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810FB9F11C9BEF90007110FA /* KWListProtocal.swift */; };
+		810FB9F51C9BEF90007110FA /* KWTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810FB9F21C9BEF90007110FA /* KWTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,8 +25,9 @@
 		426CC8EA1C8C12E700485254 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		426CC8ED1C8C12E700485254 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		426CC8EF1C8C12E700485254 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		426CC8F61C8C132A00485254 /* KWTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KWTableView.swift; sourceTree = "<group>"; };
-		426CC8FA1C8C194800485254 /* KWListProtocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KWListProtocal.swift; sourceTree = "<group>"; };
+		810FB9EF1C9BEF90007110FA /* KWCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KWCollectionView.swift; sourceTree = "<group>"; };
+		810FB9F11C9BEF90007110FA /* KWListProtocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KWListProtocal.swift; sourceTree = "<group>"; };
+		810FB9F21C9BEF90007110FA /* KWTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KWTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,7 +44,7 @@
 		426CC8D71C8C12E700485254 = {
 			isa = PBXGroup;
 			children = (
-				426CC8F51C8C131600485254 /* KWTableView */,
+				810FB9ED1C9BEF90007110FA /* KWListView */,
 				426CC8E21C8C12E700485254 /* TableViewDemo */,
 				426CC8E11C8C12E700485254 /* Products */,
 			);
@@ -69,11 +71,28 @@
 			path = TableViewDemo;
 			sourceTree = "<group>";
 		};
-		426CC8F51C8C131600485254 /* KWTableView */ = {
+		810FB9ED1C9BEF90007110FA /* KWListView */ = {
 			isa = PBXGroup;
 			children = (
-				426CC8F61C8C132A00485254 /* KWTableView.swift */,
-				426CC8FA1C8C194800485254 /* KWListProtocal.swift */,
+				810FB9EE1C9BEF90007110FA /* KWCollectionView */,
+				810FB9F01C9BEF90007110FA /* KWTableView */,
+			);
+			path = KWListView;
+			sourceTree = "<group>";
+		};
+		810FB9EE1C9BEF90007110FA /* KWCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				810FB9EF1C9BEF90007110FA /* KWCollectionView.swift */,
+			);
+			path = KWCollectionView;
+			sourceTree = "<group>";
+		};
+		810FB9F01C9BEF90007110FA /* KWTableView */ = {
+			isa = PBXGroup;
+			children = (
+				810FB9F11C9BEF90007110FA /* KWListProtocal.swift */,
+				810FB9F21C9BEF90007110FA /* KWTableView.swift */,
 			);
 			path = KWTableView;
 			sourceTree = "<group>";
@@ -150,8 +169,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				426CC8E61C8C12E700485254 /* ViewController.swift in Sources */,
-				426CC8FB1C8C194800485254 /* KWListProtocal.swift in Sources */,
-				426CC8F71C8C132A00485254 /* KWTableView.swift in Sources */,
+				810FB9F41C9BEF90007110FA /* KWListProtocal.swift in Sources */,
+				810FB9F31C9BEF90007110FA /* KWCollectionView.swift in Sources */,
+				810FB9F51C9BEF90007110FA /* KWTableView.swift in Sources */,
 				426CC8E41C8C12E700485254 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
