@@ -24,3 +24,8 @@ tableView.clickBlock = {(item,indexPath) -> Void in
   print(myItem.name)
 }
 ```
+
+4.也可以根据Index来更新cell
+```objc
+tableView.update(MyItem(name: "updated"), index: 0)
+```
