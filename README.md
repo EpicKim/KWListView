@@ -9,15 +9,16 @@ tableView = KWTableView(tableViewCellClass: MyTableViewCell.self, datasource: da
 
 2.TableViewCell需要继承KWTableViewCell,重写update来实现数据更新
 
-override func update(item: NSObject) {
-        let myItem = item as! MyItem
-        self.myLabel.text = myItem.name
-    }
+override func update(item: NSObject)
+{
+  let myItem = item as! MyItem
+  self.myLabel.text = myItem.name
+}
 
 3.使用block来获取点击事件
 
 tableView.clickBlock = {(item,indexPath) -> Void in
-            let myItem = item as! MyItem
-            print(myItem.name)
-        }
+  let myItem = item as! MyItem
+  print(myItem.name)
+}
 
