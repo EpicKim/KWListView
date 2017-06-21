@@ -9,13 +9,13 @@
 import UIKit
 
 class MyTableViewCell:KWTableViewCell {
-    private let myLabel:UILabel = UILabel()
+    fileprivate let myLabel:UILabel = UILabel()
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.addSubview(myLabel)
         
-        myLabel.frame = CGRectMake(20, 0, 100, 40)
+        myLabel.frame = CGRect(x: 20, y: 0, width: 100, height: 40)
 //        myLabel.backgroundColor = UIColor.redColor()
     }
 
@@ -23,7 +23,7 @@ class MyTableViewCell:KWTableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
  
-    override func update(item: NSObject) {
+    override func update(_ item: NSObject) {
         let myItem = item as! MyItem
         self.myLabel.text = myItem.name
     }
@@ -43,7 +43,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.edgesForExtendedLayout = .None
+        self.edgesForExtendedLayout = UIRectEdge()
         
         let datasource = [MyItem(name: "first"),
                         MyItem(name: "second"),
@@ -59,14 +59,14 @@ class ViewController: UIViewController {
         }
         self.view.addSubview(tableView)
         
-        tableView.frame = CGRectMake(0, 30, 320, 500)
+        tableView.frame = CGRect(x: 0, y: 30, width: 320, height: 500)
         
         // test update
-        let testButton = UIButton(type: .System)
-        testButton.setTitle("点我吧", forState: .Normal)
-        testButton.addTarget(self, action: "click", forControlEvents: .TouchUpInside)
+        let testButton = UIButton(type: .system)
+        testButton.setTitle("点我吧", for: UIControlState())
+        testButton.addTarget(self, action: #selector(ViewController.click), for: .touchUpInside)
         self.view.addSubview(testButton)
-        testButton.frame = CGRectMake(100, 500, 100, 40)
+        testButton.frame = CGRect(x: 100, y: 500, width: 100, height: 40)
     }
 
     override func didReceiveMemoryWarning() {
