@@ -8,20 +8,26 @@
 
 import UIKit
 
-class KWTableViewCell: UITableViewCell,KWListProtocal {
-    func update(_ item: NSObject) {
+extension UITableViewCell:KWListProtocal {
+    func update(_ item: Any) {
         
     }
 }
 
 class KWTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
+    
     fileprivate var cellIdentifier = "kwCell"
     fileprivate var tableViewCellClass:AnyClass!
-    fileprivate var datasource:[NSObject]!
+    fileprivate var datasource:[Any]!
+    
     var designedCellHeight:CGFloat!
-    var clickBlock:(_ item:NSObject,_ indexPath:IndexPath)->Void = {_ in}
-    convenience init(tableViewCellClass:AnyClass,datasource:[NSObject],designedCellHeight:CGFloat) {
+    var clickBlock:(_ item:Any,_ indexPath:IndexPath)->Void = {_ in}
+    
+    convenience init(tableViewCellClass:AnyClass,
+                     datasource:[Any],
+                     designedCellHeight:CGFloat) {
         self.init(frame:CGRect.zero)
+        
         self.designedCellHeight = designedCellHeight
         self.datasource = datasource
         self.tableViewCellClass = tableViewCellClass
@@ -35,32 +41,38 @@ class KWTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     }
     
     // MAKR: -Public
-    func update(_ item: NSObject,index:Int) {
+    /// 更新单个cell
+    ///
+    /// - Parameters:
+    ///   - item: 更新的数据结构
+    ///   - index: -
+    func update(_ item: Any,
+                index:Int) {
         // TODO: 需要加入对多section的支持
-        let cell = self.cellForRow(at: IndexPath(row: index, section: 0)) as! KWTableViewCell
-        cell.update(item)
+        let cell = self.cellForRow(at: IndexPath(row: index, section: 0))
+        cell!.update(item)
     }
     
-    // UITableView Delegate
+    // MARK: -UITableView Datasource
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.designedCellHeight
+        return designedCellHeight
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.datasource.count
+        return datasource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! KWTableViewCell
+        let cell = self.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         let item = self.datasource[indexPath.row]
         cell.update(item)
         
         return cell
     }
-    
+    // MARK: -UITableView Delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.deselectRow(at: indexPath, animated: true)
         let item = self.datasource[indexPath.row]
-        self.clickBlock(item, indexPath)
+        clickBlock(item, indexPath)
     }
 }

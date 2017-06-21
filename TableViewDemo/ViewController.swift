@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyTableViewCell:KWTableViewCell {
+class MyTableViewCell:UITableViewCell {
     fileprivate let myLabel:UILabel = UILabel()
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -16,20 +16,19 @@ class MyTableViewCell:KWTableViewCell {
         self.addSubview(myLabel)
         
         myLabel.frame = CGRect(x: 20, y: 0, width: 100, height: 40)
-//        myLabel.backgroundColor = UIColor.redColor()
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
  
-    override func update(_ item: NSObject) {
+    override func update(_ item: Any) {
         let myItem = item as! MyItem
         self.myLabel.text = myItem.name
     }
 }
 
-class MyItem : NSObject {
+class MyItem : Any {
     var name:String!
     convenience init(name:String) {
         self.init()
@@ -46,12 +45,12 @@ class ViewController: UIViewController {
         self.edgesForExtendedLayout = UIRectEdge()
         
         let datasource = [MyItem(name: "first"),
-                        MyItem(name: "second"),
-                        MyItem(name: "third"),
-                        MyItem(name: "forth"),
-                        MyItem(name: "fifth"),
-                        MyItem(name: "sixth"),
-                         MyItem(name: "senventh")]
+                          MyItem(name: "second"),
+                          MyItem(name: "third"),
+                          MyItem(name: "forth"),
+                          MyItem(name: "fifth"),
+                          MyItem(name: "sixth"),
+                          MyItem(name: "senventh")]
         tableView = KWTableView(tableViewCellClass: MyTableViewCell.self, datasource: datasource,designedCellHeight: 60)
         tableView.clickBlock = {(item,indexPath) -> Void in
             let myItem = item as! MyItem

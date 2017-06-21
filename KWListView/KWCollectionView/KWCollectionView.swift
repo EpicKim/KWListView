@@ -9,18 +9,18 @@
 import UIKit
 
 protocol KWCollectionViewCellProtocol {
-    func update(_ item: NSObject)
+    func update(_ item: Any)
 }
 
 class KWCollectionViewCell:UICollectionViewCell,KWCollectionViewCellProtocol {
-    func update(_ item: NSObject) {}
+    func update(_ item: Any) {}
 }
 
 class KWCollectionView: UICollectionView,UICollectionViewDelegate, UICollectionViewDataSource {
-    var datasource:[NSObject]!
+    var datasource:[Any]!
     var collectionViewClass:AnyClass!
-    var clickClosure:(_ item:NSObject, _ indexPath:IndexPath)->Void = {_ in }
-    convenience init(itemWidth:Int, height:Int, minimumLineSpacing:CGFloat, minimumInteritemSpacing:CGFloat, collectionViewClass:AnyClass, datasource:[NSObject]) {
+    var clickClosure:(_ item:Any, _ indexPath:IndexPath)->Void = {_ in }
+    convenience init(itemWidth:Int, height:Int, minimumLineSpacing:CGFloat, minimumInteritemSpacing:CGFloat, collectionViewClass:AnyClass, datasource:[Any]) {
     
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSize(width: itemWidth, height: height)
@@ -40,7 +40,7 @@ class KWCollectionView: UICollectionView,UICollectionViewDelegate, UICollectionV
     }
     
     // MARK: -Public 
-    func update(_ datasource : [NSObject]) {
+    func update(_ datasource : [Any]) {
         if(datasource.count == 0) {
             return 
         }
