@@ -15,6 +15,7 @@
 		810FB9F31C9BEF90007110FA /* KWCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810FB9EF1C9BEF90007110FA /* KWCollectionView.swift */; };
 		810FB9F41C9BEF90007110FA /* KWListProtocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810FB9F11C9BEF90007110FA /* KWListProtocal.swift */; };
 		810FB9F51C9BEF90007110FA /* KWTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810FB9F21C9BEF90007110FA /* KWTableView.swift */; };
+		81E504701F0E372400BDB27B /* ADTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E5046F1F0E36F100BDB27B /* ADTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		810FB9EF1C9BEF90007110FA /* KWCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KWCollectionView.swift; sourceTree = "<group>"; };
 		810FB9F11C9BEF90007110FA /* KWListProtocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KWListProtocal.swift; sourceTree = "<group>"; };
 		810FB9F21C9BEF90007110FA /* KWTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KWTableView.swift; sourceTree = "<group>"; };
+		81E5046F1F0E36F100BDB27B /* ADTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 		810FB9F01C9BEF90007110FA /* KWTableView */ = {
 			isa = PBXGroup;
 			children = (
+				81E5046F1F0E36F100BDB27B /* ADTableView.swift */,
 				810FB9F11C9BEF90007110FA /* KWListProtocal.swift */,
 				810FB9F21C9BEF90007110FA /* KWTableView.swift */,
 			);
@@ -169,6 +172,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81E504701F0E372400BDB27B /* ADTableView.swift in Sources */,
 				426CC8E61C8C12E700485254 /* ViewController.swift in Sources */,
 				810FB9F41C9BEF90007110FA /* KWListProtocal.swift in Sources */,
 				810FB9F31C9BEF90007110FA /* KWCollectionView.swift in Sources */,

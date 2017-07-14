@@ -8,6 +8,20 @@
 
 import UIKit
 
+class RedCell:MyTableViewCell {
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        self.addSubview(myLabel)
+        
+        self.backgroundColor = UIColor.red
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
 class MyTableViewCell:UITableViewCell {
     fileprivate let myLabel:UILabel = UILabel()
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -37,7 +51,7 @@ class MyItem : Any {
 }
 
 class ViewController: UIViewController {
-    var tableView:KWTableView!
+    var tableView:ADTableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -51,9 +65,21 @@ class ViewController: UIViewController {
                           MyItem(name: "fifth"),
                           MyItem(name: "sixth"),
                           MyItem(name: "senventh")]
-        tableView = KWTableView(tableViewCellClass: MyTableViewCell.self, datasource: datasource,designedCellHeight: 60)
-        tableView.clickBlock = {(item,indexPath) -> Void in
-            let myItem = item as! MyItem
+        let block = {()->Void in
+            print("哈哈")
+        }
+        var data = datasource.map { (item) -> ADListItem in
+            return ADListItem(userInfo: item,
+                              cellClass: MyTableViewCell.self,
+                              action:block)
+        }
+        data[0].cellClass = RedCell.self
+        data[2].cellClass = RedCell.self
+        tableView = ADTableView(datasource: [data,data],
+                                designedCellHeight: 30)
+//        tableView.backgroundColor = UIColor.red
+        tableView.clickBlock = {(userInfo,indexPath) -> Void in
+            let myItem = userInfo as! MyItem
             print(myItem.name)
         }
         self.view.addSubview(tableView)
@@ -63,7 +89,9 @@ class ViewController: UIViewController {
         // test update
         let testButton = UIButton(type: .system)
         testButton.setTitle("点我吧", for: UIControlState())
-        testButton.addTarget(self, action: #selector(ViewController.click), for: .touchUpInside)
+        testButton.addTarget(self,
+                             action: #selector(ViewController.click),
+                             for: .touchUpInside)
         self.view.addSubview(testButton)
         testButton.frame = CGRect(x: 100, y: 500, width: 100, height: 40)
     }
@@ -75,7 +103,7 @@ class ViewController: UIViewController {
 
     func click() {
         // TEST ALTER
-        tableView.update(MyItem(name: "updated"), index: 0)
+        tableView.update(MyItem(name: "updated"), row: 0, section: 0)
     }
 }
 

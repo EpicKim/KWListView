@@ -8,12 +8,6 @@
 
 import UIKit
 
-extension UITableViewCell:KWListProtocal {
-    func update(_ item: Any) {
-        
-    }
-}
-
 class KWTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     fileprivate var cellIdentifier = "kwCell"
@@ -22,6 +16,8 @@ class KWTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     
     var designedCellHeight:CGFloat!
     var clickBlock:(_ item:Any,_ indexPath:IndexPath)->Void = {_ in}
+    var getPlaceHolderView:()->UIView = {_ in return UIView()}
+    var placeHolderView:UIView?
     
     convenience init(tableViewCellClass:AnyClass,
                      datasource:[Any],
@@ -41,6 +37,19 @@ class KWTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
     }
     
     // MAKR: -Public
+    func kw_reload() {
+        if datasource.count == 0 {
+            if placeHolderView == nil {
+                placeHolderView = getPlaceHolderView()
+                self.addSubview(placeHolderView!)
+            }
+        }
+        else {
+            placeHolderView?.removeFromSuperview()
+            placeHolderView = nil
+        }
+        self.reloadData()
+    }
     /// 更新单个cell
     ///
     /// - Parameters:
@@ -53,6 +62,10 @@ class KWTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         cell!.update(item)
     }
     
+    func updateDatasource(_ datasource:[NSObject]) {
+        self.datasource = datasource
+        self.kw_reload()
+    }
     // MARK: -UITableView Datasource
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return designedCellHeight
