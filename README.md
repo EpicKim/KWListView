@@ -17,6 +17,7 @@ override func update(item: NSObject)
   self.myLabel.text = myItem.name
 }
 ```
+
 3.使用block来获取点击事件
 ```objc
 tableView.clickBlock = {(item,indexPath) -> Void in
